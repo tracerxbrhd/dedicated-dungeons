@@ -1,5 +1,21 @@
 {
-  "itemGroup.dedicated_dungeons": "Example Mod Tab",
-  "block.dedicated_dungeons.example_block": "Example Block",
-  "item.dedicated_dungeons.example_item": "Example Item"
+  "message.dedicated_dungeons.portal_appeared": "A rank %s dungeon portal appeared nearby. Enter within %s seconds.",
+  "message.dedicated_dungeons.portal_appeared_detailed": "%s appeared. Closes in %s seconds. Coordinates: %s, %s, %s.",
+  "message.dedicated_dungeons.portal_timer": "%s: %s seconds remaining.",
+  "message.dedicated_dungeons.portal_expired": "%s shattered.",
+  "message.dedicated_dungeons.missing_dimension": "The technical arena dimension is unavailable.",
+  "message.dedicated_dungeons.started": "Dungeon started. Defeat the boss within %s minutes.",
+  "message.dedicated_dungeons.boss_enraged": "The boss entered its enraged phase!",
+  "message.dedicated_dungeons.victory": "Boss defeated. Rewards granted; the exit is open for %s seconds.",
+  "entity.dedicated_dungeons.dungeon_boss": "Rank %s Dungeon Boss",
+  "portal.dedicated_dungeons.dungeon": "Rank %s Dungeon Portal",
+  "bossbar.dedicated_dungeons.portal": "%s — closes in %s s",
+  "itemGroup.dedicated_dungeons": "Underworld Dungeons",
+  "item.dedicated_dungeons.dungeon_key": "Dungeon Key",
+  "item.dedicated_dungeons.debug_portal_e": "Debug Portal Wand (E)",
+  "item.dedicated_dungeons.debug_portal_s": "Debug Portal Wand (S)",
+  "item.dedicated_dungeons.debug_finish": "Debug Finish Token",
+  "item.dedicated_dungeons.debug_cleanup": "Debug Cleanup Tool"
+  ,"message.dedicated_dungeons.create_failed_active": "A previous portal or instance is still active. Finish recovery/cleanup first."
+  ,"message.dedicated_dungeons.create_failed_position": "No portal position could be allocated."
 }

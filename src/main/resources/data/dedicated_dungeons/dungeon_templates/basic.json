@@ -1,0 +1,11 @@
+{
+  "size": 31,
+  "wall_height": 6,
+  "floor_block": "minecraft:deepslate_tiles",
+  "wall_block": "minecraft:polished_blackstone_bricks",
+  "accent_block": "minecraft:crying_obsidian",
+  "boss": "minecraft:zombie",
+  "boss_health": 80.0,
+  "boss_damage": 8.0,
+  "reward_pool": "dedicated_dungeons:basic"
+}

@@ -1,0 +1,10 @@
+{
+  "rolls": 2,
+  "entries": [
+    { "type": "minecraft:item", "id": "minecraft:iron_ingot", "min": 3, "max": 8, "weight": 50 },
+    { "type": "minecraft:item", "id": "minecraft:gold_ingot", "min": 2, "max": 5, "weight": 30, "minimum_rank": "D" },
+    { "type": "minecraft:item", "id": "minecraft:diamond", "min": 1, "max": 2, "weight": 10, "minimum_rank": "C" },
+    { "type": "minecraft:experience", "min": 50, "max": 120, "weight": 40 },
+    { "type": "levels:experience", "min": 25, "max": 75, "weight": 30 }
+  ]
+}

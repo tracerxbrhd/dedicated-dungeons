@@ -1,0 +1,21 @@
+{
+  "message.dedicated_dungeons.portal_appeared": "Рядом появился портал данжа ранга %s. Войдите в течение %s секунд.",
+  "message.dedicated_dungeons.portal_appeared_detailed": "Появился %s. Закроется через %s сек. Координаты: %s, %s, %s.",
+  "message.dedicated_dungeons.portal_timer": "%s: осталось %s секунд.",
+  "message.dedicated_dungeons.portal_expired": "%s раскололся.",
+  "message.dedicated_dungeons.missing_dimension": "Техническое измерение арены недоступно.",
+  "message.dedicated_dungeons.started": "Данж начался. Победите босса за %s минут.",
+  "message.dedicated_dungeons.boss_enraged": "Босс перешёл в усиленную фазу!",
+  "message.dedicated_dungeons.victory": "Босс побеждён. Награды выданы, выход открыт на %s секунд.",
+  "entity.dedicated_dungeons.dungeon_boss": "Босс данжа ранга %s",
+  "portal.dedicated_dungeons.dungeon": "Портал данжа ранга %s",
+  "bossbar.dedicated_dungeons.portal": "%s — закроется через %s сек.",
+  "itemGroup.dedicated_dungeons": "Underworld: данжи",
+  "item.dedicated_dungeons.dungeon_key": "Ключ данжа",
+  "item.dedicated_dungeons.debug_portal_e": "Отладочный портал (E)",
+  "item.dedicated_dungeons.debug_portal_s": "Отладочный портал (S)",
+  "item.dedicated_dungeons.debug_finish": "Отладочное завершение",
+  "item.dedicated_dungeons.debug_cleanup": "Отладочная очистка"
+  ,"message.dedicated_dungeons.create_failed_active": "Предыдущий портал или инстанс ещё активен. Сначала завершите восстановление или очистку."
+  ,"message.dedicated_dungeons.create_failed_position": "Не удалось выделить позицию для портала."
+}

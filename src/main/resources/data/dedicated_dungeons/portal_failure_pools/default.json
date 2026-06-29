@@ -1,0 +1,10 @@
+{
+  "entries": [
+    { "entity": "minecraft:zombie", "weight": 40, "minimum_rank": "E" },
+    { "entity": "minecraft:skeleton", "weight": 30, "minimum_rank": "E" },
+    { "entity": "minecraft:spider", "weight": 25, "minimum_rank": "D" },
+    { "entity": "minecraft:husk", "weight": 20, "minimum_rank": "C" },
+    { "entity": "minecraft:wither_skeleton", "weight": 8, "minimum_rank": "B" },
+    { "entity": "minecraft:blaze", "weight": 6, "minimum_rank": "A" }
+  ]
+}
