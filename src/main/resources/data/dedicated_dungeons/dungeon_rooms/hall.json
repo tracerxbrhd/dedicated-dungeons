@@ -1,0 +1,16 @@
+{
+  "theme": "dedicated_dungeons:underworld",
+  "size": "small",
+  "bounds": { "min": [-4, -1, -3], "max": [4, 4, 3] },
+  "connectors": [
+    { "name": "west", "pos": [-4, 0, 0], "facing": "west", "type": "default" },
+    { "name": "east", "pos": [4, 0, 0], "facing": "east", "type": "default" }
+  ],
+  "markers": { "mob_spawn": [[0, 0, 0]] },
+  "tags": ["normal"],
+  "palette": {
+    "floor": "minecraft:deepslate_tiles",
+    "wall": "minecraft:polished_blackstone_bricks",
+    "accent": "minecraft:crying_obsidian"
+  }
+}

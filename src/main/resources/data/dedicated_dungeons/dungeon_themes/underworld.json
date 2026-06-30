@@ -1,0 +1,6 @@
+{
+  "translation_key": "dungeon_theme.dedicated_dungeons.underworld",
+  "archetypes": [
+    { "archetype": "dedicated_dungeons:basic", "weight": 1 }
+  ]
+}

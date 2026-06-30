@@ -16,6 +16,7 @@ public final class DungeonSavedData extends SavedData {
     private final Map<UUID, PortalRecord> portals = new LinkedHashMap<>();
     private final Map<UUID, DungeonSession> sessions = new LinkedHashMap<>();
     private final Map<String, Long> randomCooldowns = new LinkedHashMap<>();
+    private int randomBossPortalStreak;
 
     public static DungeonSavedData get(MinecraftServer server) {
         return server.overworld().getDataStorage().computeIfAbsent(FACTORY, "dedicated_dungeons");
@@ -23,6 +24,8 @@ public final class DungeonSavedData extends SavedData {
     public Map<UUID, PortalRecord> portals() { return portals; }
     public Map<UUID, DungeonSession> sessions() { return sessions; }
     public Map<String, Long> randomCooldowns() { return randomCooldowns; }
+    public int randomBossPortalStreak() { return randomBossPortalStreak; }
+    public void randomBossPortalStreak(int value) { randomBossPortalStreak = Math.max(0, value); setDirty(); }
     public void changed() { setDirty(); }
 
     @Override public CompoundTag save(CompoundTag tag, HolderLookup.Provider registries) {
@@ -32,6 +35,7 @@ public final class DungeonSavedData extends SavedData {
         CompoundTag cooldowns = new CompoundTag();
         randomCooldowns.forEach(cooldowns::putLong);
         tag.put("randomCooldowns", cooldowns);
+        tag.putInt("randomBossPortalStreak", randomBossPortalStreak);
         return tag;
     }
     private static DungeonSavedData load(CompoundTag tag, HolderLookup.Provider registries) {
@@ -44,6 +48,7 @@ public final class DungeonSavedData extends SavedData {
         }
         CompoundTag cooldowns = tag.getCompound("randomCooldowns");
         for (String key : cooldowns.getAllKeys()) data.randomCooldowns.put(key, cooldowns.getLong(key));
+        data.randomBossPortalStreak = Math.max(0, tag.getInt("randomBossPortalStreak"));
         return data;
     }
 }

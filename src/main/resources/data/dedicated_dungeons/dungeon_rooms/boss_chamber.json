@@ -1,0 +1,19 @@
+{
+  "theme": "dedicated_dungeons:underworld",
+  "size": "boss",
+  "bounds": { "min": [-10, -1, -10], "max": [10, 7, 10] },
+  "connectors": [
+    { "name": "west", "pos": [-10, 0, 0], "facing": "west", "type": "default" }
+  ],
+  "markers": {
+    "boss_spawn": [[0, 0, 0]],
+    "exit": [[6, 0, 0]],
+    "loot_spawn": [[0, 0, 5]]
+  },
+  "tags": ["boss"],
+  "palette": {
+    "floor": "minecraft:polished_deepslate",
+    "wall": "minecraft:reinforced_deepslate",
+    "accent": "minecraft:crying_obsidian"
+  }
+}

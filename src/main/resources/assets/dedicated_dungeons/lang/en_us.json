@@ -9,13 +9,31 @@
   "message.dedicated_dungeons.victory": "Boss defeated. Rewards granted; the exit is open for %s seconds.",
   "entity.dedicated_dungeons.dungeon_boss": "Rank %s Dungeon Boss",
   "portal.dedicated_dungeons.dungeon": "Rank %s Dungeon Portal",
+  "portal.dedicated_dungeons.named": "%s — rank %s portal",
+  "dungeon_theme.dedicated_dungeons.underworld": "Underworld",
   "bossbar.dedicated_dungeons.portal": "%s — closes in %s s",
   "itemGroup.dedicated_dungeons": "Underworld Dungeons",
   "item.dedicated_dungeons.dungeon_key": "Dungeon Key",
   "item.dedicated_dungeons.debug_portal_e": "Debug Portal Wand (E)",
   "item.dedicated_dungeons.debug_portal_s": "Debug Portal Wand (S)",
   "item.dedicated_dungeons.debug_finish": "Debug Finish Token",
-  "item.dedicated_dungeons.debug_cleanup": "Debug Cleanup Tool"
+  "item.dedicated_dungeons.debug_cleanup": "Debug Cleanup Tool",
+  "message.dedicated_dungeons.out_of_bounds": "You left the instance bounds and were returned to a safe point."
+  ,"message.dedicated_dungeons.invalid_archetype": "Archetype %s is missing, disabled, or does not support the selected rank."
+  ,"message.dedicated_dungeons.create_failed": "Could not create the instance: %s"
   ,"message.dedicated_dungeons.create_failed_active": "A previous portal or instance is still active. Finish recovery/cleanup first."
   ,"message.dedicated_dungeons.create_failed_position": "No portal position could be allocated."
+  ,"item.dedicated_dungeons.dungeon_key_e": "E-rank Dungeon Key"
+  ,"item.dedicated_dungeons.dungeon_key_d": "D-rank Dungeon Key"
+  ,"item.dedicated_dungeons.dungeon_key_c": "C-rank Dungeon Key"
+  ,"item.dedicated_dungeons.dungeon_key_b": "B-rank Dungeon Key"
+  ,"item.dedicated_dungeons.dungeon_key_a": "A-rank Dungeon Key"
+  ,"item.dedicated_dungeons.dungeon_key_s": "S-rank Dungeon Key"
+  ,"item.dedicated_dungeons.dungeon_key_anomaly": "Anomaly Dungeon Key"
+  ,"item.dedicated_dungeons.debug_portal_anomaly": "Debug Portal Wand (Anomaly)"
+  ,"tooltip.dedicated_dungeons.dungeon_key": "Opens a personal %s dungeon portal."
+  ,"message.dedicated_dungeons.survival_started": "Survival Arena started: clear %s waves within %s minutes."
+  ,"message.dedicated_dungeons.survival_wave": "Wave %s / %s"
+  ,"message.dedicated_dungeons.survival_complete": "All waves cleared. Rewards granted and the exit is open."
+  ,"entity.dedicated_dungeons.survival_elite": "Wave %s Elite"
 }

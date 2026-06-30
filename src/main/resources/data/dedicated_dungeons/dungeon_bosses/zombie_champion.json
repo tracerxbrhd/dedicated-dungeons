@@ -1,0 +1,7 @@
+{
+  "entity": "minecraft:zombie",
+  "room_sizes": ["boss"],
+  "base_health": 80.0,
+  "base_damage": 8.0,
+  "reward_pool": "dedicated_dungeons:basic"
+}

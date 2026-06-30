@@ -1,0 +1,20 @@
+{
+  "theme": "dedicated_dungeons:underworld",
+  "size": "medium",
+  "bounds": { "min": [-6, -1, -6], "max": [6, 5, 6] },
+  "connectors": [
+    { "name": "east", "pos": [6, 0, 0], "facing": "east", "type": "default" },
+    { "name": "north", "pos": [0, 0, -6], "facing": "north", "type": "default" },
+    { "name": "south", "pos": [0, 0, 6], "facing": "south", "type": "default" }
+  ],
+  "markers": {
+    "player_spawn": [[0, 0, 0]],
+    "return_portal": [[0, 0, -3]]
+  },
+  "tags": ["entrance"],
+  "palette": {
+    "floor": "minecraft:deepslate_tiles",
+    "wall": "minecraft:polished_blackstone_bricks",
+    "accent": "minecraft:crying_obsidian"
+  }
+}

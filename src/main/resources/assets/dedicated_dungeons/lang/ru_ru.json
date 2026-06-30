@@ -9,13 +9,31 @@
   "message.dedicated_dungeons.victory": "Босс побеждён. Награды выданы, выход открыт на %s секунд.",
   "entity.dedicated_dungeons.dungeon_boss": "Босс данжа ранга %s",
   "portal.dedicated_dungeons.dungeon": "Портал данжа ранга %s",
+  "portal.dedicated_dungeons.named": "%s — портал ранга %s",
+  "dungeon_theme.dedicated_dungeons.underworld": "Подземье",
   "bossbar.dedicated_dungeons.portal": "%s — закроется через %s сек.",
   "itemGroup.dedicated_dungeons": "Underworld: данжи",
   "item.dedicated_dungeons.dungeon_key": "Ключ данжа",
   "item.dedicated_dungeons.debug_portal_e": "Отладочный портал (E)",
   "item.dedicated_dungeons.debug_portal_s": "Отладочный портал (S)",
   "item.dedicated_dungeons.debug_finish": "Отладочное завершение",
-  "item.dedicated_dungeons.debug_cleanup": "Отладочная очистка"
+  "item.dedicated_dungeons.debug_cleanup": "Отладочная очистка",
+  "message.dedicated_dungeons.out_of_bounds": "Вы вышли за границы инстанса и были возвращены в безопасную точку."
+  ,"message.dedicated_dungeons.invalid_archetype": "Архетип %s отсутствует, отключён или не поддерживает выбранный ранг."
+  ,"message.dedicated_dungeons.create_failed": "Не удалось создать инстанс: %s"
   ,"message.dedicated_dungeons.create_failed_active": "Предыдущий портал или инстанс ещё активен. Сначала завершите восстановление или очистку."
   ,"message.dedicated_dungeons.create_failed_position": "Не удалось выделить позицию для портала."
+  ,"item.dedicated_dungeons.dungeon_key_e": "Ключ данжа ранга E"
+  ,"item.dedicated_dungeons.dungeon_key_d": "Ключ данжа ранга D"
+  ,"item.dedicated_dungeons.dungeon_key_c": "Ключ данжа ранга C"
+  ,"item.dedicated_dungeons.dungeon_key_b": "Ключ данжа ранга B"
+  ,"item.dedicated_dungeons.dungeon_key_a": "Ключ данжа ранга A"
+  ,"item.dedicated_dungeons.dungeon_key_s": "Ключ данжа ранга S"
+  ,"item.dedicated_dungeons.dungeon_key_anomaly": "Ключ аномального данжа"
+  ,"item.dedicated_dungeons.debug_portal_anomaly": "Отладочный портал (Аномалия)"
+  ,"tooltip.dedicated_dungeons.dungeon_key": "Открывает личный портал данжа %s."
+  ,"message.dedicated_dungeons.survival_started": "Арена выживания началась: зачистите %s волн за %s мин."
+  ,"message.dedicated_dungeons.survival_wave": "Волна %s / %s"
+  ,"message.dedicated_dungeons.survival_complete": "Все волны зачищены. Награды выданы, выход открыт."
+  ,"entity.dedicated_dungeons.survival_elite": "Элитный противник волны %s"
 }

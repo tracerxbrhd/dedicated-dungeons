@@ -1,0 +1,10 @@
+{
+  "theme": "dedicated_dungeons:underworld",
+  "rooms": [
+    { "room": "dedicated_dungeons:entrance", "weight": 1 },
+    { "room": "dedicated_dungeons:crossroads", "weight": 5 },
+    { "room": "dedicated_dungeons:hall", "weight": 3 },
+    { "room": "dedicated_dungeons:boss_chamber", "weight": 1 },
+    { "room": "dedicated_dungeons:cache", "weight": 2 }
+  ]
+}

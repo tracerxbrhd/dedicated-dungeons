@@ -1,0 +1,14 @@
+{
+  "theme": "dedicated_dungeons:underworld",
+  "room_pool": "dedicated_dungeons:basic",
+  "connectors": [
+    { "connector": "dedicated_dungeons:straight", "weight": 4 },
+    { "connector": "dedicated_dungeons:corner", "weight": 1 }
+  ],
+  "bosses": [
+    { "boss": "dedicated_dungeons:zombie_champion", "weight": 1 }
+  ],
+  "main_path": { "min": 2, "max": 4 },
+  "dead_end_chance": 0.35,
+  "difficulties": ["E", "D", "C", "B", "A", "S", "ANOMALY"]
+}

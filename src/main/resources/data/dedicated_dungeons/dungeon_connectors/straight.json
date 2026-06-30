@@ -1,0 +1,13 @@
+{
+  "bounds": { "min": [-3, -1, -2], "max": [3, 3, 2] },
+  "connectors": [
+    { "name": "west", "pos": [-3, 0, 0], "facing": "west", "type": "default" },
+    { "name": "east", "pos": [3, 0, 0], "facing": "east", "type": "default" }
+  ],
+  "weight": 4,
+  "palette": {
+    "floor": "minecraft:deepslate_tiles",
+    "wall": "minecraft:polished_blackstone_bricks",
+    "accent": "minecraft:crying_obsidian"
+  }
+}

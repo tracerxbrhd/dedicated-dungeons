@@ -2,6 +2,7 @@ package dev.underworld.dungeons.template;
 
 import com.google.gson.JsonParser;
 import dev.underworld.dungeons.DedicatedDungeonsMod;
+import dev.underworld.dungeons.content.DungeonContentRegistry;
 import dev.underworld.dungeons.portal.FailureMobPool;
 import dev.underworld.dungeons.portal.FailureMobPools;
 import net.minecraft.resources.ResourceLocation;
@@ -52,6 +53,7 @@ public final class DungeonTemplateReloadListener {
                 }
             }
             FailureMobPools.replace(mobPools);
+            DungeonContentRegistry.reload(manager);
         }
     }
 }

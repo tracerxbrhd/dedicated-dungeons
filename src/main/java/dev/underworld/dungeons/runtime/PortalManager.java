@@ -3,13 +3,18 @@ package dev.underworld.dungeons.runtime;
 import dev.underworld.api.difficulty.DifficultyRank;
 import dev.underworld.api.event.UnderworldEvents;
 import dev.underworld.api.instance.InstanceManager;
+import dev.underworld.api.instance.InstancePhase;
+import dev.underworld.api.instance.InstanceView;
 import dev.underworld.api.instance.InstanceType;
 import dev.underworld.dungeons.config.DungeonServerConfig;
 import dev.underworld.dungeons.data.DungeonSavedData;
+import dev.underworld.dungeons.data.DungeonSession;
 import dev.underworld.dungeons.data.PortalRecord;
+import dev.underworld.dungeons.content.DungeonContentRegistry;
 import dev.underworld.dungeons.portal.FailureMobPool;
 import dev.underworld.dungeons.portal.FailureMobPools;
 import dev.underworld.dungeons.portal.PortalOrigin;
+import dev.underworld.dungeons.portal.PortalAccessMode;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -39,7 +44,6 @@ import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.common.NeoForge;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -71,6 +75,22 @@ public final class PortalManager {
     public java.util.Collection<PortalRecord> active() { return List.copyOf(data.portals().values()); }
 
     public Optional<PortalRecord> createFor(ServerPlayer player, DifficultyRank rank, PortalOrigin origin) {
+        ResourceLocation archetype = origin == PortalOrigin.RANDOM
+            ? DungeonContentRegistry.chooseAnyArchetype(rank, player.getRandom()).map(value -> value.id()).orElse(TEMPLATE)
+            : TEMPLATE;
+        InstanceType type = origin == PortalOrigin.RANDOM ? chooseRandomType(player) : InstanceType.BOSS_DUNGEON;
+        Optional<PortalRecord> created = createFor(player, rank, origin, archetype, type);
+        if (origin == PortalOrigin.RANDOM && created.isPresent()) recordRandomType(type);
+        return created;
+    }
+
+    public Optional<PortalRecord> createFor(ServerPlayer player, DifficultyRank rank, PortalOrigin origin,
+                                            ResourceLocation requestedArchetype) {
+        return createFor(player, rank, origin, requestedArchetype, InstanceType.BOSS_DUNGEON);
+    }
+
+    public Optional<PortalRecord> createFor(ServerPlayer player, DifficultyRank rank, PortalOrigin origin,
+                                            ResourceLocation requestedArchetype, InstanceType type) {
         int maxPortals = DungeonServerConfig.MAX_ACTIVE_PORTALS.get();
         if (origin.appliesWorldLimits() && maxPortals > 0 && activeCount() >= maxPortals) return Optional.empty();
         if (InstanceManager.get(server).findByPlayer(player.getUUID()).isPresent()) {
@@ -90,19 +110,32 @@ public final class PortalManager {
 
         // PortalManager owns the visible entry timer. The small grace period prevents the API timer
         // from winning the same server tick and bypassing shatter effects.
-        var instance = InstanceManager.get(server).create(TEMPLATE, InstanceType.DUNGEON, rank,
-            player, rank.entrySeconds() + 5);
+        ResourceLocation archetype = DungeonContentRegistry.resolveArchetype(requestedArchetype)
+            .filter(value -> value.difficulties().contains(rank)).map(value -> value.id()).orElse(null);
+        if (archetype == null && !requestedArchetype.equals(TEMPLATE)) {
+            player.sendSystemMessage(Component.translatable("message.dedicated_dungeons.invalid_archetype", requestedArchetype));
+            return Optional.empty();
+        }
+        if (archetype == null) archetype = TEMPLATE;
+        dev.underworld.api.instance.ManagedInstance instance;
+        try {
+            instance = InstanceManager.get(server).create(archetype, type, rank,
+                player, rank.entrySeconds() + 5);
+        } catch (IllegalStateException exception) {
+            player.sendSystemMessage(Component.translatable("message.dedicated_dungeons.create_failed", exception.getMessage()));
+            return Optional.empty();
+        }
         PortalRecord portal = new PortalRecord(UUID.randomUUID(), player.getUUID(), instance.id(),
-            player.level().dimension(), position.get(), rank,
-            System.currentTimeMillis() + rank.entrySeconds() * 1000L);
+            player.level().dimension(), position.get(), rank, archetype, origin,
+            System.currentTimeMillis() + rank.entrySeconds() * 1000L, false);
         data.portals().put(portal.id(), portal);
         if (origin.appliesWorldLimits()) applyRandomCooldown(player.getUUID(), rank);
         data.changed();
 
         spawnVisual(portal);
-        scheduleLightning(portal.dimension(), portal.position(), DungeonServerConfig.APPEARANCE_LIGHTNING_STRIKES.get());
+        spawnAppearanceEffects(portal);
         player.sendSystemMessage(Component.translatable("message.dedicated_dungeons.portal_appeared_detailed",
-            portalName(rank), rank.entrySeconds(), portal.position().getX(), portal.position().getY(), portal.position().getZ()));
+            portalName(portal), rank.entrySeconds(), portal.position().getX(), portal.position().getY(), portal.position().getZ()));
         NeoForge.EVENT_BUS.post(new UnderworldEvents.PortalLifecycle(PORTAL_TYPE,
             UnderworldEvents.PortalLifecycle.Stage.APPEARED, portal.dimension(), portal.position(), player));
         return Optional.of(portal);
@@ -113,27 +146,37 @@ public final class PortalManager {
         for (PortalRecord portal : new ArrayList<>(data.portals().values())) {
             ServerLevel level = server.getLevel(portal.dimension());
             if (level == null) continue;
+            InstanceManager manager = InstanceManager.get(server);
+            InstanceView instance = manager.find(portal.instanceId()).orElse(null);
+            if (instance == null || instance.phase().terminal()) {
+                closePortal(portal);
+                continue;
+            }
             ServerPlayer owner = server.getPlayerList().getPlayer(portal.ownerId());
-            if (now >= portal.deadlineMillis()) {
+            if (!portal.entered() && now >= portal.deadlineMillis()) {
                 shatter(portal, owner, true, true, "portal_expired");
                 continue;
             }
 
-            int seconds = Math.max(0, (int) Math.ceil((portal.deadlineMillis() - now) / 1000.0));
-            updateCountdownBar(portal, seconds);
-            if ((seconds == 60 || seconds == 30 || seconds == 10)
-                && notifiedSeconds.getOrDefault(portal.id(), -1) != seconds) {
-                notifiedSeconds.put(portal.id(), seconds);
-                if (owner != null) owner.sendSystemMessage(Component.translatable(
-                    "message.dedicated_dungeons.portal_timer", portalName(portal.rank()), seconds));
+            if (!portal.entered()) {
+                int seconds = Math.max(0, (int) Math.ceil((portal.deadlineMillis() - now) / 1000.0));
+                updateCountdownBar(portal, seconds);
+                if ((seconds == 60 || seconds == 30 || seconds == 10)
+                    && notifiedSeconds.getOrDefault(portal.id(), -1) != seconds) {
+                    notifiedSeconds.put(portal.id(), seconds);
+                    if (owner != null) owner.sendSystemMessage(Component.translatable(
+                        "message.dedicated_dungeons.portal_timer", portalName(portal), seconds));
+                }
+            } else {
+                removeCountdownBar(portal.id());
             }
 
-            level.sendParticles(ParticleTypes.PORTAL, portal.position().getX() + 0.5,
-                portal.position().getY() + 2.5, portal.position().getZ() + 0.5,
-                20, 1.8, 2.2, 0.25, 0.03);
-            if (owner != null && owner.level() == level && owner.distanceToSqr(
-                portal.position().getX() + 0.5, portal.position().getY() + 1.0,
-                portal.position().getZ() + 0.5) < 4.0) enter(portal, owner);
+            sendPortalParticles(level, portal, false);
+            for (ServerPlayer candidate : server.getPlayerList().getPlayers()) {
+                if (candidate.level() != level || candidate.distanceToSqr(portal.position().getX() + 0.5,
+                    portal.position().getY() + 1.0, portal.position().getZ() + 0.5) >= 4.0) continue;
+                if (canEnter(portal, instance, candidate)) enter(portal, candidate);
+            }
         }
         cleanupExpiredMobs();
     }
@@ -180,6 +223,14 @@ public final class PortalManager {
         return true;
     }
 
+    public boolean closeForInstance(UUID instanceId) {
+        PortalRecord portal = data.portals().values().stream()
+            .filter(value -> value.instanceId().equals(instanceId)).findFirst().orElse(null);
+        if (portal == null) return false;
+        closePortal(portal);
+        return true;
+    }
+
     public void shatterAt(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> dimension,
                           BlockPos position, DifficultyRank rank, boolean spawnMobs) {
         ServerLevel level = server.getLevel(dimension);
@@ -192,13 +243,53 @@ public final class PortalManager {
     }
 
     private void enter(PortalRecord portal, ServerPlayer player) {
-        data.portals().remove(portal.id());
+        InstanceManager manager = InstanceManager.get(server);
+        if (!manager.addParticipant(portal.instanceId(), player)) return;
+        DungeonRuntime runtime = DungeonRuntime.get(server);
+        boolean entered = runtime.hasSession(portal.instanceId())
+            ? runtime.teleportToSession(player, portal.instanceId())
+            : runtime.start(portal, player, portal.archetypeId());
+        if (!entered) return;
+        PortalRecord current = data.portals().get(portal.id());
+        if (current != null && !current.entered()) data.portals().put(portal.id(), current.markEntered());
         data.changed();
-        removeVisual(portal);
         removeCountdownBar(portal.id());
         NeoForge.EVENT_BUS.post(new UnderworldEvents.PortalLifecycle(PORTAL_TYPE,
             UnderworldEvents.PortalLifecycle.Stage.ENTERED, portal.dimension(), portal.position(), player));
-        DungeonRuntime.get(server).start(portal, player, TEMPLATE);
+    }
+
+    private boolean canEnter(PortalRecord portal, InstanceView instance, ServerPlayer player) {
+        if (!player.isAlive() || player.isRemoved()) return false;
+        if (player.isSpectator() && !DungeonServerConfig.ALLOW_SPECTATOR_ENTRY.get()) return false;
+        if (instance.phase().terminal()) return false;
+        boolean participant = instance.participants().contains(player.getUUID());
+        DungeonRuntime runtime = DungeonRuntime.get(server);
+        DungeonSession session = runtime.session(instance.id());
+        if (session != null && session.returnedPlayers().contains(player.getUUID())) return false;
+        if (!participant && instance.phase() != InstancePhase.WAITING_FOR_ENTRY
+            && !DungeonServerConfig.ALLOW_LATE_JOIN.get()) return false;
+        Optional<InstanceView> assigned = InstanceManager.get(server).findByPlayer(player.getUUID());
+        if (assigned.isPresent() && !assigned.get().id().equals(instance.id())) return false;
+
+        PortalAccessMode fallback = portal.origin() == PortalOrigin.KEY
+            ? PortalAccessMode.OWNER_ONLY : PortalAccessMode.PUBLIC_NEARBY;
+        String configured = portal.origin() == PortalOrigin.KEY
+            ? DungeonServerConfig.PERSONAL_PORTAL_ACCESS.get() : DungeonServerConfig.RANDOM_PORTAL_ACCESS.get();
+        PortalAccessMode mode = PortalAccessMode.byName(configured, fallback);
+        if (participant || player.getUUID().equals(portal.ownerId())) return true;
+        if (mode == PortalAccessMode.OWNER_ONLY || mode == PortalAccessMode.PARTY) return false;
+        int range = DungeonServerConfig.NEARBY_ACCESS_RADIUS.get();
+        return player.level().dimension().equals(portal.dimension())
+            && player.distanceToSqr(portal.position().getX() + 0.5, portal.position().getY() + 1.0,
+                portal.position().getZ() + 0.5) <= range * range;
+    }
+
+    private void closePortal(PortalRecord portal) {
+        if (data.portals().remove(portal.id()) == null) return;
+        removeVisual(portal);
+        removeCountdownBar(portal.id());
+        notifiedSeconds.remove(portal.id());
+        data.changed();
     }
 
     private void shatter(PortalRecord portal, ServerPlayer owner, boolean spawnMobs,
@@ -210,7 +301,7 @@ public final class PortalManager {
         notifiedSeconds.remove(portal.id());
         shatterAt(portal.dimension(), portal.position(), portal.rank(), spawnMobs);
         if (owner != null) owner.sendSystemMessage(Component.translatable(
-            "message.dedicated_dungeons.portal_expired", portalName(portal.rank())));
+            "message.dedicated_dungeons.portal_expired", portalName(portal)));
         NeoForge.EVENT_BUS.post(new UnderworldEvents.PortalLifecycle(PORTAL_TYPE,
             UnderworldEvents.PortalLifecycle.Stage.EXPIRED, portal.dimension(), portal.position(), owner));
         if (transitionInstance) InstanceManager.get(server).fail(portal.instanceId(), reason);
@@ -254,9 +345,9 @@ public final class PortalManager {
 
     private void updateCountdownBar(PortalRecord portal, int seconds) {
         ServerBossEvent bar = countdownBars.computeIfAbsent(portal.id(), id -> new ServerBossEvent(
-            Component.translatable("bossbar.dedicated_dungeons.portal", portalName(portal.rank()), seconds),
+            Component.translatable("bossbar.dedicated_dungeons.portal", portalName(portal), seconds),
             barColor(portal.rank()), BossEvent.BossBarOverlay.PROGRESS));
-        bar.setName(Component.translatable("bossbar.dedicated_dungeons.portal", portalName(portal.rank()), seconds));
+        bar.setName(Component.translatable("bossbar.dedicated_dungeons.portal", portalName(portal), seconds));
         bar.setProgress(Math.max(0, Math.min(1, seconds / (float) portal.rank().entrySeconds())));
         bar.removeAllPlayers();
         ServerLevel level = server.getLevel(portal.dimension());
@@ -283,13 +374,75 @@ public final class PortalManager {
             Display.BlockDisplay display = new Display.BlockDisplay(EntityType.BLOCK_DISPLAY, level);
             CompoundTag nbt = new CompoundTag();
             nbt.put("block_state", NbtUtils.writeBlockState(frame
-                ? Blocks.CRYING_OBSIDIAN.defaultBlockState() : Blocks.PURPLE_STAINED_GLASS.defaultBlockState()));
+                ? frameBlock(portal.rank()).defaultBlockState() : portalBlock(portal.rank()).defaultBlockState()));
             display.load(nbt);
             display.setPos(portal.position().getX() + x, portal.position().getY() + y, portal.position().getZ());
             display.addTag(tag);
             level.addFreshEntity(display);
         }
-        level.playSound(null, portal.position(), SoundEvents.PORTAL_TRIGGER, SoundSource.AMBIENT, 1.0f, 0.8f);
+    }
+
+    private void spawnAppearanceEffects(PortalRecord portal) {
+        ServerLevel level = server.getLevel(portal.dimension());
+        if (level == null) return;
+        sendPortalParticles(level, portal, true);
+        float volume = 0.55f + portal.rank().ordinal() * 0.16f;
+        float pitch = Math.max(0.35f, 1.2f - portal.rank().ordinal() * 0.11f);
+        level.playSound(null, portal.position(), portal.rank().ordinal() >= DifficultyRank.A.ordinal()
+            ? SoundEvents.RESPAWN_ANCHOR_DEPLETE.value() : SoundEvents.PORTAL_TRIGGER, SoundSource.AMBIENT, volume, pitch);
+        int configured = DungeonServerConfig.APPEARANCE_LIGHTNING_STRIKES.get();
+        int strikes = switch (portal.rank()) {
+            case E -> configured <= 0 ? 0 : Math.max(1, configured / 3);
+            case D -> configured <= 0 ? 0 : Math.max(1, configured / 2);
+            case C -> configured <= 0 ? 0 : Math.max(1, configured - 1);
+            case B -> configured;
+            case A -> configured + 1;
+            case S -> configured + 2;
+            case ANOMALY -> configured + 4;
+        };
+        scheduleLightning(portal.dimension(), portal.position(), strikes);
+    }
+
+    private void sendPortalParticles(ServerLevel level, PortalRecord portal, boolean burst) {
+        double intensity = DungeonServerConfig.PORTAL_EFFECT_INTENSITY.get();
+        if (intensity <= 0) return;
+        int base = burst ? 24 : 6;
+        int count = Math.max(1, (int) Math.round(base * intensity * (1.0 + portal.rank().ordinal() * 0.28)));
+        var particles = switch (portal.rank()) {
+            case E -> ParticleTypes.PORTAL;
+            case D -> ParticleTypes.REVERSE_PORTAL;
+            case C -> ParticleTypes.ENCHANT;
+            case B -> ParticleTypes.SOUL_FIRE_FLAME;
+            case A -> ParticleTypes.FLAME;
+            case S -> ParticleTypes.WITCH;
+            case ANOMALY -> ParticleTypes.SCULK_SOUL;
+        };
+        level.sendParticles(particles, portal.position().getX() + 0.5, portal.position().getY() + 2.5,
+            portal.position().getZ() + 0.5, count, 1.8, 2.2, 0.25, burst ? 0.08 : 0.02);
+    }
+
+    private static net.minecraft.world.level.block.Block frameBlock(DifficultyRank rank) {
+        return switch (rank) {
+            case E -> Blocks.OBSIDIAN;
+            case D -> Blocks.CRYING_OBSIDIAN;
+            case C -> Blocks.AMETHYST_BLOCK;
+            case B -> Blocks.POLISHED_BLACKSTONE;
+            case A -> Blocks.MAGMA_BLOCK;
+            case S -> Blocks.RESPAWN_ANCHOR;
+            case ANOMALY -> Blocks.SCULK_CATALYST;
+        };
+    }
+
+    private static net.minecraft.world.level.block.Block portalBlock(DifficultyRank rank) {
+        return switch (rank) {
+            case E -> Blocks.PURPLE_STAINED_GLASS;
+            case D -> Blocks.MAGENTA_STAINED_GLASS;
+            case C -> Blocks.BLUE_STAINED_GLASS;
+            case B -> Blocks.ORANGE_STAINED_GLASS;
+            case A -> Blocks.RED_STAINED_GLASS;
+            case S -> Blocks.TINTED_GLASS;
+            case ANOMALY -> Blocks.SCULK;
+        };
     }
 
     private void removeVisual(PortalRecord portal) {
@@ -373,14 +526,32 @@ public final class PortalManager {
             case B -> DungeonServerConfig.COOLDOWN_B_SECONDS.get();
             case A -> DungeonServerConfig.COOLDOWN_A_SECONDS.get();
             case S -> DungeonServerConfig.COOLDOWN_S_SECONDS.get();
+            case ANOMALY -> DungeonServerConfig.COOLDOWN_ANOMALY_SECONDS.get();
         };
         data.randomCooldowns().put(cooldownKey(playerId, rank), System.currentTimeMillis() + (base + random) * 1000L);
     }
 
     private static String cooldownKey(UUID playerId, DifficultyRank rank) { return playerId + "_" + rank.name(); }
+    private InstanceType chooseRandomType(ServerPlayer player) {
+        int boss = DungeonServerConfig.BOSS_DUNGEON_WEIGHT.get();
+        int survival = DungeonServerConfig.SURVIVAL_ARENA_WEIGHT.get();
+        int pity = DungeonServerConfig.SURVIVAL_PITY_AFTER_BOSS_PORTALS.get();
+        if (survival > 0 && pity > 0 && data.randomBossPortalStreak() >= pity)
+            return InstanceType.SURVIVAL_ARENA;
+        int total = boss + survival;
+        if (survival <= 0 || total <= 0) return InstanceType.BOSS_DUNGEON;
+        return player.getRandom().nextInt(total) < survival ? InstanceType.SURVIVAL_ARENA : InstanceType.BOSS_DUNGEON;
+    }
+
+    private void recordRandomType(InstanceType type) {
+        data.randomBossPortalStreak(type.isSurvival() ? 0 : data.randomBossPortalStreak() + 1);
+    }
     private static String visualTag(UUID id) { return "dd_portal_" + id; }
-    private static Component portalName(DifficultyRank rank) {
-        return Component.translatable("portal.dedicated_dungeons.dungeon", rank.name()).withStyle(rank.color());
+    private static Component portalName(PortalRecord portal) {
+        Component theme = DungeonContentRegistry.themeForArchetype(portal.archetypeId())
+            .<Component>map(value -> Component.translatable(value.translationKey()))
+            .orElse(Component.translatable("dungeon_theme.dedicated_dungeons.underworld"));
+        return Component.translatable("portal.dedicated_dungeons.named", theme, portal.rank().displayName());
     }
     private static BossEvent.BossBarColor barColor(DifficultyRank rank) {
         return switch (rank) {
@@ -389,6 +560,7 @@ public final class PortalManager {
             case B -> BossEvent.BossBarColor.PURPLE;
             case A -> BossEvent.BossBarColor.YELLOW;
             case S -> BossEvent.BossBarColor.RED;
+            case ANOMALY -> BossEvent.BossBarColor.PURPLE;
         };
     }
 

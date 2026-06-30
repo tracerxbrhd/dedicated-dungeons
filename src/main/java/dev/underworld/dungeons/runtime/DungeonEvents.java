@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.List;
@@ -69,6 +69,8 @@ public final class DungeonEvents {
                     event.instance().difficulty(), true);
             }
         }
+        if (event.stage() == UnderworldEvents.InstanceLifecycle.Stage.COMPLETED)
+            portals.closeForInstance(event.instance().id());
         if (runtime.hasSession(event.instance().id())) runtime.requestFinish(event.instance());
         else InstanceManager.get(server).remove(event.instance().id(), "terminal_without_session");
     }
@@ -77,31 +79,20 @@ public final class DungeonEvents {
     public static void onDeath(LivingDeathEvent event) {
         if (event.getEntity().level().isClientSide()) return;
         var server = event.getEntity().getServer(); if (server == null) return;
-        if (DungeonRuntime.get(server).bossKilled(event.getEntity().getUUID())) return;
-        if (event.getEntity() instanceof ServerPlayer player) {
-            InstanceManager.get(server).findByPlayer(player.getUUID()).ifPresent(instance -> {
-                DungeonRuntime runtime = DungeonRuntime.get(server);
-                if (!runtime.hasSession(instance.id())) return;
-                boolean anyoneAlive = instance.participants().stream()
-                    .map(server.getPlayerList()::getPlayer)
-                    .anyMatch(member -> member != null && member.isAlive());
-                if (!anyoneAlive) InstanceManager.get(server).fail(instance.id(), "all_players_dead");
-            });
-        }
+        DungeonRuntime.get(server).bossKilled(event.getEntity().getUUID());
     }
 
     @SubscribeEvent
-    public static void onBreak(BlockEvent.BreakEvent event) {
-        if (event.getLevel() instanceof net.minecraft.server.level.ServerLevel level
-            && level.dimension() == DungeonRuntime.ARENA_DIMENSION
-            && DungeonRuntime.get(level.getServer()).contains(event.getPos())) event.setCanceled(true);
+    public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player)
+            DungeonRuntime.get(player.getServer()).recoverPendingReturn(player);
     }
 
     @SubscribeEvent
-    public static void onPlace(BlockEvent.EntityPlaceEvent event) {
-        if (event.getLevel() instanceof net.minecraft.server.level.ServerLevel level
-            && level.dimension() == DungeonRuntime.ARENA_DIMENSION
-            && DungeonRuntime.get(level.getServer()).contains(event.getPos())) event.setCanceled(true);
+    public static void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        DungeonRuntime runtime = DungeonRuntime.get(player.getServer());
+        runtime.recoverPendingReturn(player);
     }
 
     private static boolean allowedDimension(ResourceLocation id) {
@@ -112,8 +103,9 @@ public final class DungeonEvents {
 
     private static DifficultyRank randomRank(ServerPlayer player) {
         int roll = player.getRandom().nextInt(1000);
-        if (roll < 5) return DifficultyRank.S;
-        if (roll < 25) return DifficultyRank.A;
+        if (roll < 2) return DifficultyRank.ANOMALY;
+        if (roll < 7) return DifficultyRank.S;
+        if (roll < 27) return DifficultyRank.A;
         if (roll < 100) return DifficultyRank.B;
         if (roll < 300) return DifficultyRank.C;
         if (roll < 600) return DifficultyRank.D;

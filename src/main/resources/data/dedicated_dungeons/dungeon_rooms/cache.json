@@ -1,0 +1,15 @@
+{
+  "theme": "dedicated_dungeons:underworld",
+  "size": "small",
+  "bounds": { "min": [-3, -1, -3], "max": [3, 4, 3] },
+  "connectors": [
+    { "name": "west", "pos": [-3, 0, 0], "facing": "west", "type": "default" }
+  ],
+  "markers": { "loot_spawn": [[0, 0, 0]] },
+  "tags": ["dead_end", "loot"],
+  "palette": {
+    "floor": "minecraft:deepslate_tiles",
+    "wall": "minecraft:polished_blackstone_bricks",
+    "accent": "minecraft:gilded_blackstone"
+  }
+}
