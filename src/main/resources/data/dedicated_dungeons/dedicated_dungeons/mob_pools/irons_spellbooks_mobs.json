@@ -1,0 +1,16 @@
+{
+  "format_version": 1,
+  "required_mods": ["irons_spellbooks"],
+  "fallback": "dedicated_dungeons:vanilla_scaling",
+  "entries": [
+    { "entity": "irons_spellbooks:necromancer", "weight": 5, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "caster" },
+    { "entity": "irons_spellbooks:apothecarist", "weight": 3, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 1, "role": "support" },
+    { "entity": "irons_spellbooks:cultist", "weight": 4, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "caster" },
+    { "entity": "irons_spellbooks:cryomancer", "weight": 3, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "caster" },
+    { "entity": "irons_spellbooks:pyromancer", "weight": 3, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "caster" },
+    { "entity": "irons_spellbooks:magehunter_vindicator", "weight": 2, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "elite", "can_equip": true, "arena_allowed": false },
+    { "entity": "irons_spellbooks:archevoker", "weight": 2, "minimum_tier": 4, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 1, "role": "elite", "arena_allowed": false },
+    { "entity": "irons_spellbooks:citadel_keeper", "weight": 2, "minimum_tier": 4, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 1, "role": "elite", "arena_allowed": false },
+    { "entity": "irons_spellbooks:ice_spider", "weight": 2, "minimum_tier": 4, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 1, "role": "elite", "arena_allowed": false }
+  ]
+}

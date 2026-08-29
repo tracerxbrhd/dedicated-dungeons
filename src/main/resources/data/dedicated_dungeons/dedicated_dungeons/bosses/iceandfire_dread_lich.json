@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "entity": "iceandfire:dread_lich",
+  "room_sizes": ["boss"],
+  "base_health": 125.0,
+  "base_damage": 6.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 3,
+  "minimum_tier": 4,
+  "maximum_tier": 6,
+  "required_mods": ["iceandfire"]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 },
+      "entries": [
+        { "type": "minecraft:loot_table", "value": "dedicated_dungeons:chests/ambient/uncommon" }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "conditions": [
+        { "condition": "minecraft:random_chance", "chance": 0.12 }
+      ],
+      "entries": [
+        { "type": "minecraft:loot_table", "value": "dedicated_dungeons:chests/reward/rare" }
+      ]
+    }
+  ],
+  "random_sequence": "dedicated_dungeons:chests/ambient/hidden"
+}

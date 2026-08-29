@@ -1,0 +1,84 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Dedicated Dungeons
+        uses: actions/checkout@v4
+        with:
+          path: dedicated-dungeons
+
+      - name: Resolve U-API ref
+        id: uapi
+        working-directory: dedicated-dungeons
+        shell: bash
+        env:
+          U_API_REPOSITORY: ${{ vars.U_API_REPOSITORY }}
+          U_API_REF: ${{ vars.U_API_REF }}
+        run: |
+          set -euo pipefail
+          uapi_version="$(sed -n 's/^u_api_version=//p' gradle.properties)"
+          minecraft_version="$(sed -n 's/^minecraft_version=//p' gradle.properties)"
+          test -n "${uapi_version}" && test -n "${minecraft_version}"
+          echo "repository=${U_API_REPOSITORY:-${GITHUB_REPOSITORY_OWNER}/u-api}" >> "${GITHUB_OUTPUT}"
+          echo "ref=${U_API_REF:-v${uapi_version}+mc${minecraft_version}}" >> "${GITHUB_OUTPUT}"
+
+      - name: Checkout matching U-API
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ steps.uapi.outputs.repository }}
+          ref: ${{ steps.uapi.outputs.ref }}
+          path: u-api
+          token: ${{ secrets.U_API_REPOSITORY_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Clean build and unit tests
+        working-directory: dedicated-dungeons
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon -Puse_local_u_api=true clean build
+
+      - name: Run NeoForge GameTests
+        working-directory: dedicated-dungeons
+        run: ./gradlew --no-daemon -Puse_local_u_api=true runGameTestServer
+
+      - name: Select user JAR
+        id: artifact
+        working-directory: dedicated-dungeons
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t jars < <(find build/libs -maxdepth 1 -type f -name 'dedicated-dungeons-*.jar' \
+            ! -name '*-sources.jar' ! -name '*-javadoc.jar' ! -name '*-dev.jar' | sort)
+          [[ "${#jars[@]}" -eq 1 ]] || { printf 'Expected one user JAR, found:\n%s\n' "${jars[*]}" >&2; exit 1; }
+          [[ -s "${jars[0]}" ]]
+          echo "path=${jars[0]}" >> "${GITHUB_OUTPUT}"
+          echo "name=$(basename "${jars[0]}")" >> "${GITHUB_OUTPUT}"
+
+      - name: Upload verified build
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.artifact.outputs.name }}
+          path: dedicated-dungeons/${{ steps.artifact.outputs.path }}
+          if-no-files-found: error

@@ -1,0 +1,32 @@
+{
+  "format_version": 1,
+  "theme": "dedicated_dungeons:forgotten_depths",
+  "structure": "dedicated_dungeons:test/hall",
+  "size": "medium",
+  "bounds": { "min": [0, 0, 0], "max": [10, 5, 8] },
+  "connectors": [
+    { "name": "west", "pos": [0, 1, 4], "facing": "west", "type": "door_small" },
+    { "name": "east", "pos": [10, 1, 4], "facing": "east", "type": "door_small" },
+    { "name": "north", "pos": [5, 1, 0], "facing": "north", "type": "door_small" }
+  ],
+  "markers": {
+    "room_connector": [
+      { "pos": [0, 1, 4], "facing": "west", "profile": "dedicated_dungeons:straight" },
+      { "pos": [10, 1, 4], "facing": "east", "profile": "dedicated_dungeons:straight" },
+      { "pos": [5, 1, 0], "facing": "north", "profile": "dedicated_dungeons:straight" }
+    ],
+    "spawner": [
+      { "pos": [5, 1, 4], "profile": "dedicated_dungeons:test_encounters", "group": "hall" }
+    ],
+    "loot": [
+      { "pos": [5, 1, 6], "facing": "north", "loot_role": "COMMON" }
+    ]
+  },
+  "tags": ["normal"],
+  "weight": 3,
+  "palette": {
+    "floor": "minecraft:deepslate_tiles",
+    "wall": "minecraft:polished_blackstone_bricks",
+    "accent": "minecraft:cracked_polished_blackstone_bricks"
+  }
+}

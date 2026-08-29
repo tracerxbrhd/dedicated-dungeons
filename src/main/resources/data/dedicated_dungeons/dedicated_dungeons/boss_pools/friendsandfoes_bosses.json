@@ -1,0 +1,8 @@
+{
+  "format_version": 1,
+  "required_mods": ["friendsandfoes"],
+  "bosses": [
+    { "boss": "dedicated_dungeons:friendsandfoes_wildfire", "weight": 3 }
+  ],
+  "fallback": "dedicated_dungeons:vanilla_bosses"
+}

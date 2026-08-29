@@ -1,0 +1,97 @@
+{
+  "id": "dedicated_dungeons:default",
+  "scaling": {
+    "base_count": 1,
+    "count_per_additional_player": 1,
+    "maximum_count": 8,
+    "difficulty_count_multiplier": 0.12
+  },
+  "roles": {
+    "AMBIENT": {
+      "entries": [
+        { "entity": "minecraft:bat", "weight": 8, "min_count": 1, "max_count": 3 }
+      ]
+    },
+    "COMMON": {
+      "entries": [
+        { "entity": "minecraft:zombie", "weight": 12, "min_difficulty": 0, "max_difficulty": 3, "min_count": 1, "max_count": 2, "can_equip": true },
+        { "entity": "minecraft:skeleton", "weight": 10, "min_difficulty": 0, "max_difficulty": 3, "min_count": 1, "max_count": 2, "can_equip": true },
+        { "entity": "minecraft:spider", "weight": 9, "min_difficulty": 0, "max_difficulty": 3, "min_count": 1, "max_count": 3 },
+        { "entity": "minecraft:husk", "weight": 7, "min_difficulty": 1, "max_difficulty": 4, "min_count": 1, "max_count": 2, "can_equip": true },
+        { "entity": "minecraft:drowned", "weight": 6, "min_difficulty": 1, "max_difficulty": 4, "min_count": 1, "max_count": 2, "can_equip": true },
+        { "entity": "iceandfire:dread_thrall", "weight": 5, "min_difficulty": 0, "max_difficulty": 2, "min_count": 1, "max_count": 2, "can_equip": true, "required_mods": ["iceandfire"] },
+        { "entity": "iceandfire:dread_ghoul", "weight": 4, "min_difficulty": 1, "max_difficulty": 3, "min_count": 1, "max_count": 2, "required_mods": ["iceandfire"] },
+        { "entity": "mowziesmobs:umvuthana", "weight": 4, "min_difficulty": 2, "max_difficulty": 4, "required_mods": ["mowziesmobs"] },
+        { "entity": "friendsandfoes:mauler", "weight": 4, "min_difficulty": 1, "max_difficulty": 3, "required_mods": ["friendsandfoes"] },
+        { "entity": "rottencreatures:burned", "weight": 4, "min_difficulty": 1, "max_difficulty": 3, "can_equip": true, "required_mods": ["rottencreatures"] },
+        { "entity": "rottencreatures:frostbitten", "weight": 4, "min_difficulty": 1, "max_difficulty": 3, "can_equip": true, "required_mods": ["rottencreatures"] },
+        { "entity": "rottencreatures:swampy", "weight": 3, "min_difficulty": 1, "max_difficulty": 3, "can_equip": true, "required_mods": ["rottencreatures"] },
+        { "entity": "irons_spellbooks:cultist", "weight": 3, "min_difficulty": 2, "max_difficulty": 4, "required_mods": ["irons_spellbooks"] }
+      ]
+    },
+    "RANGED": {
+      "entries": [
+        { "entity": "minecraft:skeleton", "weight": 10, "min_difficulty": 0, "max_difficulty": 3, "can_equip": true },
+        { "entity": "minecraft:stray", "weight": 7, "min_difficulty": 1, "max_difficulty": 4, "can_equip": true },
+        { "entity": "minecraft:bogged", "weight": 6, "min_difficulty": 2, "max_difficulty": 5, "can_equip": true },
+        { "entity": "minecraft:pillager", "weight": 6, "min_difficulty": 2, "max_difficulty": 5, "can_equip": true },
+        { "entity": "minecraft:blaze", "weight": 5, "min_difficulty": 3, "max_difficulty": 6 },
+        { "entity": "iceandfire:cockatrice", "weight": 3, "min_difficulty": 2, "max_difficulty": 4, "required_mods": ["iceandfire"] },
+        { "entity": "iceandfire:stymphalian_bird", "weight": 2, "min_difficulty": 2, "max_difficulty": 4, "required_mods": ["iceandfire"] },
+        { "entity": "rottencreatures:glacial_hunter", "weight": 3, "min_difficulty": 2, "max_difficulty": 4, "can_equip": true, "required_mods": ["rottencreatures"] },
+        { "entity": "irons_spellbooks:necromancer", "weight": 3, "min_difficulty": 2, "max_difficulty": 4, "required_mods": ["irons_spellbooks"] },
+        { "entity": "irons_spellbooks:cryomancer", "weight": 2, "min_difficulty": 3, "max_difficulty": 5, "required_mods": ["irons_spellbooks"] },
+        { "entity": "irons_spellbooks:pyromancer", "weight": 2, "min_difficulty": 3, "max_difficulty": 5, "required_mods": ["irons_spellbooks"] },
+        { "entity": "friendsandfoes:iceologer", "weight": 3, "min_difficulty": 2, "max_difficulty": 4, "required_mods": ["friendsandfoes"] }
+      ]
+    },
+    "HEAVY": {
+      "entries": [
+        { "entity": "minecraft:vindicator", "weight": 7, "min_difficulty": 2, "max_difficulty": 5, "can_equip": true },
+        { "entity": "minecraft:wither_skeleton", "weight": 6, "min_difficulty": 3, "max_difficulty": 6, "can_equip": true },
+        { "entity": "minecraft:piglin_brute", "weight": 4, "min_difficulty": 4, "max_difficulty": 6, "can_equip": true },
+        { "entity": "iceandfire:dread_beast", "weight": 4, "min_difficulty": 1, "max_difficulty": 3, "required_mods": ["iceandfire"] },
+        { "entity": "mowziesmobs:naga", "weight": 3, "min_difficulty": 2, "max_difficulty": 4, "required_mods": ["mowziesmobs"] },
+        { "entity": "mowziesmobs:umvuthana_raptor", "weight": 2, "min_difficulty": 3, "max_difficulty": 5, "required_mods": ["mowziesmobs"] },
+        { "entity": "endermanoverhaul:cave_enderman", "weight": 3, "min_difficulty": 2, "max_difficulty": 4, "required_mods": ["endermanoverhaul"] },
+        { "entity": "endermanoverhaul:badlands_enderman", "weight": 2, "min_difficulty": 2, "max_difficulty": 4, "required_mods": ["endermanoverhaul"] },
+        { "entity": "endermanoverhaul:warped_forest_enderman", "weight": 2, "min_difficulty": 3, "max_difficulty": 5, "required_mods": ["endermanoverhaul"] },
+        { "entity": "rottencreatures:mummy", "weight": 3, "min_difficulty": 2, "max_difficulty": 4, "can_equip": true, "required_mods": ["rottencreatures"] }
+      ]
+    },
+    "SUPPORT": {
+      "entries": [
+        { "entity": "minecraft:witch", "weight": 6, "min_difficulty": 2, "max_difficulty": 6 },
+        { "entity": "irons_spellbooks:apothecarist", "weight": 5, "min_difficulty": 2, "max_difficulty": 5, "required_mods": ["irons_spellbooks"] },
+        { "entity": "friendsandfoes:illusioner", "weight": 2, "min_difficulty": 3, "max_difficulty": 5, "can_equip": true, "required_mods": ["friendsandfoes"] }
+      ]
+    },
+    "ELITE": {
+      "entries": [
+        { "entity": "minecraft:ravager", "weight": 5, "min_difficulty": 4, "max_difficulty": 6, "arena_allowed": false },
+        { "entity": "minecraft:evoker", "weight": 5, "min_difficulty": 4, "max_difficulty": 6, "can_equip": true, "arena_allowed": false },
+        { "entity": "iceandfire:dread_knight", "weight": 4, "min_difficulty": 3, "max_difficulty": 5, "can_equip": true, "arena_allowed": false, "required_mods": ["iceandfire"] },
+        { "entity": "iceandfire:dread_scuttler", "weight": 3, "min_difficulty": 3, "max_difficulty": 5, "arena_allowed": false, "required_mods": ["iceandfire"] },
+        { "entity": "iceandfire:dread_lich", "weight": 2, "min_difficulty": 4, "max_difficulty": 6, "can_equip": true, "arena_allowed": false, "required_mods": ["iceandfire"] },
+        { "entity": "mowziesmobs:bluff", "weight": 2, "min_difficulty": 4, "max_difficulty": 5, "arena_allowed": false, "required_mods": ["mowziesmobs"] },
+        { "entity": "irons_spellbooks:magehunter_vindicator", "weight": 2, "min_difficulty": 3, "max_difficulty": 5, "can_equip": true, "arena_allowed": false, "required_mods": ["irons_spellbooks"] },
+        { "entity": "irons_spellbooks:archevoker", "weight": 1, "min_difficulty": 4, "max_difficulty": 6, "arena_allowed": false, "required_mods": ["irons_spellbooks"] },
+        { "entity": "rottencreatures:immortal", "weight": 1, "min_difficulty": 4, "max_difficulty": 6, "can_equip": true, "arena_allowed": false, "required_mods": ["rottencreatures"] }
+      ]
+    },
+    "BOSS": {
+      "entries": [
+        { "entity": "minecraft:evoker", "weight": 6, "min_difficulty": 1, "max_difficulty": 3, "arena_allowed": false },
+        { "entity": "minecraft:ravager", "weight": 5, "min_difficulty": 2, "max_difficulty": 4, "arena_allowed": false },
+        { "entity": "iceandfire:cockatrice", "weight": 5, "min_difficulty": 1, "max_difficulty": 3, "arena_allowed": false, "required_mods": ["iceandfire"] },
+        { "entity": "iceandfire:cyclops", "weight": 4, "min_difficulty": 3, "max_difficulty": 5, "arena_allowed": false, "required_mods": ["iceandfire"] },
+        { "entity": "iceandfire:gorgon", "weight": 3, "min_difficulty": 3, "max_difficulty": 5, "arena_allowed": false, "required_mods": ["iceandfire"] },
+        { "entity": "iceandfire:hydra", "weight": 1, "min_difficulty": 4, "max_difficulty": 6, "arena_allowed": false, "required_mods": ["iceandfire"] },
+        { "entity": "mowziesmobs:ferrous_wroughtnaut", "weight": 4, "min_difficulty": 3, "max_difficulty": 5, "arena_allowed": false, "required_mods": ["mowziesmobs"] },
+        { "entity": "mowziesmobs:frostmaw", "weight": 2, "min_difficulty": 4, "max_difficulty": 6, "arena_allowed": false, "required_mods": ["mowziesmobs"] },
+        { "entity": "irons_spellbooks:dead_king", "weight": 2, "min_difficulty": 4, "max_difficulty": 6, "arena_allowed": false, "required_mods": ["irons_spellbooks"] },
+        { "entity": "rottencreatures:dead_beard", "weight": 3, "min_difficulty": 3, "max_difficulty": 5, "can_equip": true, "arena_allowed": false, "required_mods": ["rottencreatures"] }
+      ]
+    }
+  }
+}

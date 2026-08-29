@@ -1,0 +1,29 @@
+{
+  "format_version": 1,
+  "theme": "dedicated_dungeons:forgotten_depths",
+  "structure": "dedicated_dungeons:test/entrance",
+  "size": "medium",
+  "bounds": { "min": [0, 0, 0], "max": [12, 6, 12] },
+  "connectors": [
+    { "name": "west", "pos": [0, 1, 6], "facing": "west", "type": "door_small" },
+    { "name": "east", "pos": [12, 1, 6], "facing": "east", "type": "door_small" },
+    { "name": "north", "pos": [6, 1, 0], "facing": "north", "type": "door_small" }
+  ],
+  "markers": {
+    "player_spawn": [
+      { "pos": [6, 1, 6], "facing": "east", "group": "entry", "order": 0 },
+      { "pos": [6, 1, 8], "facing": "east", "group": "entry", "order": 1 }
+    ],
+    "room_connector": [
+      { "pos": [0, 1, 6], "facing": "west", "profile": "dedicated_dungeons:straight" },
+      { "pos": [12, 1, 6], "facing": "east", "profile": "dedicated_dungeons:straight" },
+      { "pos": [6, 1, 0], "facing": "north", "profile": "dedicated_dungeons:straight" }
+    ]
+  },
+  "tags": ["entrance"],
+  "palette": {
+    "floor": "minecraft:deepslate_tiles",
+    "wall": "minecraft:polished_blackstone_bricks",
+    "accent": "minecraft:crying_obsidian"
+  }
+}

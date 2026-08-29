@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "required_mods": ["mowziesmobs"],
+  "fallback": "dedicated_dungeons:vanilla_scaling",
+  "entries": [
+    { "entity": "mowziesmobs:foliaath", "weight": 5, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "hazard" },
+    { "entity": "mowziesmobs:naga", "weight": 4, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "mowziesmobs:umvuthana", "weight": 4, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "melee" },
+    { "entity": "mowziesmobs:umvuthana_raptor", "weight": 2, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "melee" },
+    { "entity": "mowziesmobs:bluff", "weight": 1, "minimum_tier": 4, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "elite", "arena_allowed": false }
+  ]
+}

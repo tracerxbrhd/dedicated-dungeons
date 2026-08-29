@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "entity": "iceandfire:dread_ghoul",
+  "room_sizes": ["boss"],
+  "base_health": 58.0,
+  "base_damage": 6.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 4,
+  "minimum_tier": 1,
+  "maximum_tier": 2,
+  "required_mods": ["iceandfire"]
+}

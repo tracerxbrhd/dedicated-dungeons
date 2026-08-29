@@ -1,0 +1,11 @@
+{
+  "format_version": 1,
+  "bosses": [
+    { "boss": "dedicated_dungeons:zombie_champion", "weight": 8 },
+    { "boss": "dedicated_dungeons:skeleton_commander", "weight": 7 },
+    { "boss": "dedicated_dungeons:ravager_behemoth", "weight": 6 },
+    { "boss": "dedicated_dungeons:wither_skeleton_warlord", "weight": 6 },
+    { "boss": "dedicated_dungeons:evoker_archmage", "weight": 5 },
+    { "boss": "dedicated_dungeons:warden_aberration", "weight": 4 }
+  ]
+}

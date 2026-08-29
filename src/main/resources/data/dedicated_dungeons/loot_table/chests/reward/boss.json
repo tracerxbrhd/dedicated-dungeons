@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": { "type": "minecraft:uniform", "min": 3.0, "max": 5.0 },
+      "entries": [
+        { "type": "minecraft:loot_table", "value": "dedicated_dungeons:chests/reward/common" }
+      ]
+    },
+    {
+      "rolls": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 },
+      "entries": [
+        { "type": "minecraft:loot_table", "value": "dedicated_dungeons:chests/reward/rare" }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "conditions": [
+        { "condition": "minecraft:random_chance", "chance": 0.23 }
+      ],
+      "entries": [
+        { "type": "minecraft:loot_table", "value": "dedicated_dungeons:chests/reward/unique" }
+      ]
+    }
+  ],
+  "random_sequence": "dedicated_dungeons:chests/reward/boss"
+}

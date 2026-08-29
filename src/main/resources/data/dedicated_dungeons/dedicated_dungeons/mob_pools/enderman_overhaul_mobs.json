@@ -1,0 +1,22 @@
+{
+  "format_version": 1,
+  "required_mods": ["endermanoverhaul"],
+  "fallback": "dedicated_dungeons:vanilla_scaling",
+  "entries": [
+    { "entity": "endermanoverhaul:cave_enderman", "weight": 5, "minimum_tier": 2, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:desert_enderman", "weight": 4, "minimum_tier": 2, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:badlands_enderman", "weight": 4, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:crimson_forest_enderman", "weight": 3, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:nether_wastes_enderman", "weight": 3, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:savanna_enderman", "weight": 3, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:snowy_enderman", "weight": 3, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:dark_oak_enderman", "weight": 3, "minimum_tier": 3, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 1, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:swamp_enderman", "weight": 3, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:warped_forest_enderman", "weight": 3, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:windswept_hills_enderman", "weight": 2, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:ice_spikes_enderman", "weight": 2, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:end_enderman", "weight": 2, "minimum_tier": 4, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:soulsand_valley_enderman", "weight": 2, "minimum_tier": 4, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "skirmisher" },
+    { "entity": "endermanoverhaul:end_islands_enderman", "weight": 1, "minimum_tier": 5, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 1, "role": "elite", "arena_allowed": false }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "format_version": 1,
+  "bosses": [
+    { "boss": "dedicated_dungeons:zombie_champion", "weight": 8 },
+    { "boss": "dedicated_dungeons:skeleton_commander", "weight": 7 },
+    { "boss": "dedicated_dungeons:ravager_behemoth", "weight": 6 },
+    { "boss": "dedicated_dungeons:wither_skeleton_warlord", "weight": 6 },
+    { "boss": "dedicated_dungeons:evoker_archmage", "weight": 5 },
+    { "boss": "dedicated_dungeons:warden_aberration", "weight": 4 },
+    { "boss": "dedicated_dungeons:iceandfire_dread_thrall", "weight": 4 },
+    { "boss": "dedicated_dungeons:iceandfire_dread_ghoul", "weight": 4 },
+    { "boss": "dedicated_dungeons:iceandfire_cockatrice", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_ghost", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_stymphalian_bird", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_dread_knight", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_dread_scuttler", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_troll", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_dread_lich", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_cyclops", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_hydra", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_gorgon", "weight": 2 },
+    { "boss": "dedicated_dungeons:irons_dead_king", "weight": 3 },
+    { "boss": "dedicated_dungeons:irons_fire_boss", "weight": 3 },
+    { "boss": "dedicated_dungeons:mowzies_wroughtnaut", "weight": 3 },
+    { "boss": "dedicated_dungeons:mowzies_frostmaw", "weight": 3 },
+    { "boss": "dedicated_dungeons:mowzies_umvuthi", "weight": 2 },
+    { "boss": "dedicated_dungeons:friendsandfoes_wildfire", "weight": 3 },
+    { "boss": "dedicated_dungeons:rotten_dead_beard", "weight": 3 },
+    { "boss": "dedicated_dungeons:rotten_immortal", "weight": 2 }
+  ],
+  "fallback": "dedicated_dungeons:vanilla_bosses"
+}

@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "entity": "iceandfire:stymphalian_bird",
+  "room_sizes": ["boss"],
+  "base_health": 75.0,
+  "base_damage": 6.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 3,
+  "minimum_tier": 2,
+  "maximum_tier": 5,
+  "required_mods": ["iceandfire"]
+}

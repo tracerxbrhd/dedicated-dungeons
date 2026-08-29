@@ -1,0 +1,8 @@
+{
+  "format_version": 1,
+  "entries": [
+    { "entity": "minecraft:zombie", "weight": 5, "minimum_level": 0, "maximum_level": 20, "minimum_tier": 0, "maximum_tier": 2, "minimum_count": 1, "maximum_count": 2, "role": "melee", "can_equip": true },
+    { "entity": "minecraft:skeleton", "weight": 3, "minimum_level": 0, "maximum_level": 20, "minimum_tier": 0, "maximum_tier": 2, "minimum_count": 1, "maximum_count": 2, "role": "ranged", "can_equip": true },
+    { "entity": "minecraft:spider", "weight": 2, "minimum_level": 0, "maximum_level": 20, "minimum_tier": 0, "maximum_tier": 2, "minimum_count": 1, "maximum_count": 2, "role": "melee" }
+  ]
+}

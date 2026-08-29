@@ -1,0 +1,11 @@
+{
+  "format_version": 1,
+  "entity": "minecraft:zombie",
+  "room_sizes": ["boss"],
+  "base_health": 45.0,
+  "base_damage": 5.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 8,
+  "minimum_tier": 0,
+  "maximum_tier": 1
+}

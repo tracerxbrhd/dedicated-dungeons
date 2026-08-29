@@ -1,0 +1,17 @@
+{
+  "format_version": 1,
+  "required_mods": ["iceandfire"],
+  "fallback": "dedicated_dungeons:vanilla_scaling",
+  "entries": [
+    { "entity": "iceandfire:dread_thrall", "weight": 7, "minimum_tier": 0, "maximum_tier": 2, "minimum_count": 1, "maximum_count": 3, "role": "melee", "can_equip": true },
+    { "entity": "iceandfire:dread_beast", "weight": 5, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "iceandfire:dread_ghoul", "weight": 5, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "melee" },
+    { "entity": "iceandfire:ghost", "weight": 3, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "iceandfire:cockatrice", "weight": 3, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 1, "role": "ranged" },
+    { "entity": "iceandfire:stymphalian_bird", "weight": 2, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 1, "role": "ranged" },
+    { "entity": "iceandfire:dread_knight", "weight": 3, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 2, "role": "elite", "can_equip": true, "arena_allowed": false },
+    { "entity": "iceandfire:dread_scuttler", "weight": 2, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "elite", "arena_allowed": false },
+    { "entity": "iceandfire:dread_lich", "weight": 2, "minimum_tier": 4, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 1, "role": "elite", "can_equip": true, "arena_allowed": false },
+    { "entity": "iceandfire:troll", "weight": 2, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "elite", "arena_allowed": false }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "format_version": 1,
+  "mob_pool": "dedicated_dungeons:integrated_scaling",
+  "minimum_groups": 1,
+  "maximum_groups": 3
+}

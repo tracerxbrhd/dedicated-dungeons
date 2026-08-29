@@ -1,0 +1,10 @@
+{
+  "format_version": 1,
+  "required_mods": ["mowziesmobs"],
+  "bosses": [
+    { "boss": "dedicated_dungeons:mowzies_wroughtnaut", "weight": 3 },
+    { "boss": "dedicated_dungeons:mowzies_frostmaw", "weight": 3 },
+    { "boss": "dedicated_dungeons:mowzies_umvuthi", "weight": 2 }
+  ],
+  "fallback": "dedicated_dungeons:vanilla_bosses"
+}

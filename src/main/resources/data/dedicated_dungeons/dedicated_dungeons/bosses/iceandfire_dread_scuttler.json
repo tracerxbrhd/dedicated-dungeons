@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "entity": "iceandfire:dread_scuttler",
+  "room_sizes": ["boss"],
+  "base_health": 100.0,
+  "base_damage": 9.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 3,
+  "minimum_tier": 3,
+  "maximum_tier": 5,
+  "required_mods": ["iceandfire"]
+}

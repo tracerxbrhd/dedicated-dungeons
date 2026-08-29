@@ -1,0 +1,9 @@
+{
+  "format_version": 1,
+  "theme": "dedicated_dungeons:forgotten_depths",
+  "rooms": [
+    { "room": "dedicated_dungeons:entrance", "weight": 1 },
+    { "room": "dedicated_dungeons:hall", "weight": 6 },
+    { "room": "dedicated_dungeons:boss_chamber", "weight": 1 }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "entity": "iceandfire:dread_thrall",
+  "room_sizes": ["boss"],
+  "base_health": 42.0,
+  "base_damage": 4.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 4,
+  "minimum_tier": 0,
+  "maximum_tier": 1,
+  "required_mods": ["iceandfire"]
+}

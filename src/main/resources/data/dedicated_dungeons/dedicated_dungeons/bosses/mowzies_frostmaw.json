@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "entity": "mowziesmobs:frostmaw",
+  "room_sizes": ["boss"],
+  "base_health": 150.0,
+  "base_damage": 10.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 3,
+  "minimum_tier": 4,
+  "maximum_tier": 5,
+  "required_mods": ["mowziesmobs"]
+}

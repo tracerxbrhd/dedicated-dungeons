@@ -1,0 +1,23 @@
+{
+  "format_version": 1,
+  "entries": [
+    { "entity": "minecraft:zombie", "weight": 8, "minimum_tier": 0, "maximum_tier": 2, "minimum_count": 1, "maximum_count": 3, "role": "melee", "can_equip": true },
+    { "entity": "minecraft:skeleton", "weight": 7, "minimum_tier": 0, "maximum_tier": 2, "minimum_count": 1, "maximum_count": 2, "role": "ranged", "can_equip": true },
+    { "entity": "minecraft:spider", "weight": 6, "minimum_tier": 0, "maximum_tier": 2, "minimum_count": 1, "maximum_count": 3, "role": "melee" },
+    { "entity": "minecraft:husk", "weight": 6, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 3, "role": "melee", "can_equip": true },
+    { "entity": "minecraft:stray", "weight": 5, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "ranged", "can_equip": true },
+    { "entity": "minecraft:drowned", "weight": 4, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "melee", "can_equip": true },
+    { "entity": "minecraft:cave_spider", "weight": 4, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "melee" },
+    { "entity": "minecraft:bogged", "weight": 5, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "ranged", "can_equip": true },
+    { "entity": "minecraft:pillager", "weight": 5, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "ranged", "can_equip": true },
+    { "entity": "minecraft:vindicator", "weight": 4, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "melee", "can_equip": true },
+    { "entity": "minecraft:enderman", "weight": 3, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 1, "role": "skirmisher" },
+    { "entity": "minecraft:wither_skeleton", "weight": 5, "minimum_tier": 3, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 2, "role": "melee", "can_equip": true },
+    { "entity": "minecraft:blaze", "weight": 5, "minimum_tier": 3, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 2, "role": "ranged" },
+    { "entity": "minecraft:breeze", "weight": 4, "minimum_tier": 3, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 2, "role": "skirmisher" },
+    { "entity": "minecraft:piglin_brute", "weight": 4, "minimum_tier": 4, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 2, "role": "melee", "can_equip": true },
+    { "entity": "minecraft:evoker", "weight": 3, "minimum_tier": 4, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 1, "role": "caster", "can_equip": true },
+    { "entity": "minecraft:shulker", "weight": 3, "minimum_tier": 4, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 2, "role": "ranged" },
+    { "entity": "minecraft:ravager", "weight": 2, "minimum_tier": 4, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 1, "role": "elite", "arena_allowed": false }
+  ]
+}

@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        maven { url = 'https://maven.neoforged.net/releases' }
+    }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
+
+rootProject.name = 'dedicated-dungeons'
+
+// The sibling U-API checkout may target a newer Minecraft/JDK line. Release builds use the
+// published 1.21.1 artifact by default; opt into a matching local checkout explicitly.
+if (providers.gradleProperty('use_local_u_api').orElse('false').get().toBoolean()) {
+    includeBuild('../u-api') {
+        dependencySubstitution {
+            substitute module('dev.uapi:u-api') using project(':')
+        }
+    }
+}

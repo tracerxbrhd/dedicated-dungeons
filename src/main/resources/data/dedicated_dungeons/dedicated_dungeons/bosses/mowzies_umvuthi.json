@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "entity": "mowziesmobs:umvuthi",
+  "room_sizes": ["boss"],
+  "base_health": 150.0,
+  "base_damage": 2.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 2,
+  "minimum_tier": 5,
+  "maximum_tier": 6,
+  "required_mods": ["mowziesmobs"]
+}

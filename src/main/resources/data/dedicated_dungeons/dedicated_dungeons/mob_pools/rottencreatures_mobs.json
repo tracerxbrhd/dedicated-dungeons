@@ -1,0 +1,13 @@
+{
+  "format_version": 1,
+  "required_mods": ["rottencreatures"],
+  "fallback": "dedicated_dungeons:vanilla_scaling",
+  "entries": [
+    { "entity": "rottencreatures:burned", "weight": 5, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "melee", "can_equip": true },
+    { "entity": "rottencreatures:frostbitten", "weight": 5, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "melee", "can_equip": true },
+    { "entity": "rottencreatures:swampy", "weight": 4, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "melee", "can_equip": true },
+    { "entity": "rottencreatures:undead_miner", "weight": 4, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "melee", "can_equip": true },
+    { "entity": "rottencreatures:mummy", "weight": 4, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "melee", "can_equip": true },
+    { "entity": "rottencreatures:glacial_hunter", "weight": 3, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 1, "role": "ranged", "can_equip": true }
+  ]
+}

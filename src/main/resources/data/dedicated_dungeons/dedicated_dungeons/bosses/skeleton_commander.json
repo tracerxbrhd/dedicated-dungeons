@@ -1,0 +1,11 @@
+{
+  "format_version": 1,
+  "entity": "minecraft:skeleton",
+  "room_sizes": ["boss"],
+  "base_health": 55.0,
+  "base_damage": 6.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 7,
+  "minimum_tier": 1,
+  "maximum_tier": 2
+}

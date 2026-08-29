@@ -1,0 +1,35 @@
+{
+  "format_version": 1,
+  "theme": "dedicated_dungeons:forgotten_depths",
+  "structure": "dedicated_dungeons:test/boss_chamber",
+  "size": "boss",
+  "bounds": { "min": [0, 0, 0], "max": [14, 7, 14] },
+  "connectors": [
+    { "name": "west", "pos": [0, 1, 7], "facing": "west", "type": "door_small" }
+  ],
+  "markers": {
+    "room_connector": [
+      { "pos": [0, 1, 7], "facing": "west", "profile": "dedicated_dungeons:straight" }
+    ],
+    "boss_spawn": [
+      { "pos": [7, 1, 7], "facing": "west", "profile": "dedicated_dungeons:integrated_bosses" }
+    ],
+    "loot": [
+      {
+        "pos": [7, 1, 11],
+        "facing": "north",
+        "loot_role": "BOSS",
+        "container_type": "TRAPPED_CHEST"
+      }
+    ],
+    "exit_portal": [
+      { "pos": [12, 1, 7], "facing": "east", "group": "completion" }
+    ]
+  },
+  "tags": ["boss"],
+  "palette": {
+    "floor": "minecraft:polished_deepslate",
+    "wall": "minecraft:reinforced_deepslate",
+    "accent": "minecraft:crying_obsidian"
+  }
+}

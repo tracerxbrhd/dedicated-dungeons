@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "entity": "friendsandfoes:wildfire",
+  "room_sizes": ["boss"],
+  "base_health": 120.0,
+  "base_damage": 8.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 3,
+  "minimum_tier": 4,
+  "maximum_tier": 5,
+  "required_mods": ["friendsandfoes"]
+}

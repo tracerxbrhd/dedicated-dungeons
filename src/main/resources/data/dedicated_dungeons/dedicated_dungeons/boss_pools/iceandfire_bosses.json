@@ -1,0 +1,19 @@
+{
+  "format_version": 1,
+  "required_mods": ["iceandfire"],
+  "bosses": [
+    { "boss": "dedicated_dungeons:iceandfire_dread_thrall", "weight": 4 },
+    { "boss": "dedicated_dungeons:iceandfire_dread_ghoul", "weight": 4 },
+    { "boss": "dedicated_dungeons:iceandfire_cockatrice", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_ghost", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_stymphalian_bird", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_dread_knight", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_dread_scuttler", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_troll", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_dread_lich", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_hydra", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_cyclops", "weight": 3 },
+    { "boss": "dedicated_dungeons:iceandfire_gorgon", "weight": 2 }
+  ],
+  "fallback": "dedicated_dungeons:vanilla_bosses"
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        { "type": "minecraft:loot_table", "value": "dedicated_dungeons:chests/supply/basic", "weight": 4 },
+        { "type": "minecraft:loot_table", "value": "dedicated_dungeons:chests/supply/advanced", "weight": 1 }
+      ]
+    }
+  ],
+  "random_sequence": "dedicated_dungeons:chests/themes/example/supply"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "dedicated_dungeons:forgotten_depths",
+  "parent": "dedicated_dungeons:default",
+  "roles": {
+    "COMMON": {
+      "table": "dedicated_dungeons:chests/themes/example/common"
+    },
+    "SUPPLY": {
+      "table": "dedicated_dungeons:chests/themes/example/supply"
+    },
+    "BOSS": {
+      "table": "dedicated_dungeons:chests/themes/example/boss"
+    }
+  }
+}

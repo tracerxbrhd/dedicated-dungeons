@@ -1,0 +1,8 @@
+{
+  "format_version": 1,
+  "translation_key": "dungeon_theme.dedicated_dungeons.forgotten_depths",
+  "loot_profile": "dedicated_dungeons:forgotten_depths",
+  "archetypes": [
+    { "archetype": "dedicated_dungeons:basic", "weight": 1 }
+  ]
+}

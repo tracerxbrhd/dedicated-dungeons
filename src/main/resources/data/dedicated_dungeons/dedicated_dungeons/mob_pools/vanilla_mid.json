@@ -1,0 +1,7 @@
+{
+  "format_version": 1,
+  "entries": [
+    { "entity": "minecraft:husk", "weight": 4, "minimum_level": 15, "maximum_level": 60, "minimum_tier": 1, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 3, "role": "melee", "can_equip": true },
+    { "entity": "minecraft:stray", "weight": 3, "minimum_level": 15, "maximum_level": 60, "minimum_tier": 1, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 2, "role": "ranged", "can_equip": true }
+  ]
+}

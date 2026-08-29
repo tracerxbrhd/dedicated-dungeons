@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "entity": "iceandfire:gorgon",
+  "room_sizes": ["boss"],
+  "base_health": 140.0,
+  "base_damage": 4.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 2,
+  "minimum_tier": 5,
+  "maximum_tier": 6,
+  "required_mods": ["iceandfire"]
+}

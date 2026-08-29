@@ -1,0 +1,11 @@
+{
+  "format_version": 1,
+  "entity": "minecraft:evoker",
+  "room_sizes": ["boss"],
+  "base_health": 90.0,
+  "base_damage": 5.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 5,
+  "minimum_tier": 4,
+  "maximum_tier": 5
+}

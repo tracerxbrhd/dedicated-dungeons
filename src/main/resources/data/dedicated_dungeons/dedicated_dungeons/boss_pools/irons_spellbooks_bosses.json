@@ -1,0 +1,9 @@
+{
+  "format_version": 1,
+  "required_mods": ["irons_spellbooks"],
+  "bosses": [
+    { "boss": "dedicated_dungeons:irons_dead_king", "weight": 1 },
+    { "boss": "dedicated_dungeons:irons_fire_boss", "weight": 1 }
+  ],
+  "fallback": "dedicated_dungeons:vanilla_bosses"
+}

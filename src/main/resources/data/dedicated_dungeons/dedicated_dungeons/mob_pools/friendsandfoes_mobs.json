@@ -1,0 +1,10 @@
+{
+  "format_version": 1,
+  "required_mods": ["friendsandfoes"],
+  "fallback": "dedicated_dungeons:vanilla_scaling",
+  "entries": [
+    { "entity": "friendsandfoes:mauler", "weight": 5, "minimum_tier": 1, "maximum_tier": 3, "minimum_count": 1, "maximum_count": 2, "role": "melee" },
+    { "entity": "friendsandfoes:iceologer", "weight": 4, "minimum_tier": 2, "maximum_tier": 4, "minimum_count": 1, "maximum_count": 1, "role": "caster" },
+    { "entity": "friendsandfoes:illusioner", "weight": 3, "minimum_tier": 3, "maximum_tier": 5, "minimum_count": 1, "maximum_count": 1, "role": "caster", "can_equip": true }
+  ]
+}

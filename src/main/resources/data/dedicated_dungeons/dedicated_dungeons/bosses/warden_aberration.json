@@ -1,0 +1,11 @@
+{
+  "format_version": 1,
+  "entity": "minecraft:warden",
+  "room_sizes": ["boss"],
+  "base_health": 100.0,
+  "base_damage": 9.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 4,
+  "minimum_tier": 5,
+  "maximum_tier": 6
+}

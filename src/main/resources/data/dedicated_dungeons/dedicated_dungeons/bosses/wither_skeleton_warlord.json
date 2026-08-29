@@ -1,0 +1,11 @@
+{
+  "format_version": 1,
+  "entity": "minecraft:wither_skeleton",
+  "room_sizes": ["boss"],
+  "base_health": 75.0,
+  "base_damage": 8.0,
+  "reward_pool": "dedicated_dungeons:basic",
+  "weight": 6,
+  "minimum_tier": 3,
+  "maximum_tier": 4
+}

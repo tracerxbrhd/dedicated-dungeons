@@ -1,0 +1,7 @@
+{
+  "format_version": 1,
+  "entries": [
+    { "entity": "minecraft:wither_skeleton", "weight": 4, "minimum_level": 40, "maximum_level": 1000000, "minimum_tier": 3, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 2, "role": "elite", "can_equip": true, "arena_allowed": false },
+    { "entity": "minecraft:blaze", "weight": 3, "minimum_level": 40, "maximum_level": 1000000, "minimum_tier": 3, "maximum_tier": 6, "minimum_count": 1, "maximum_count": 2, "role": "ranged" }
+  ]
+}

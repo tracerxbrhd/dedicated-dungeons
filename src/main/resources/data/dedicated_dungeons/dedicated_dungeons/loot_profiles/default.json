@@ -1,0 +1,26 @@
+{
+  "id": "dedicated_dungeons:default",
+  "roles": {
+    "COMMON": {
+      "table": "dedicated_dungeons:chests/ambient/common"
+    },
+    "HIDDEN": {
+      "table": "dedicated_dungeons:chests/ambient/hidden"
+    },
+    "SUPPLY": {
+      "tables": [
+        { "table": "dedicated_dungeons:chests/supply/basic", "weight": 4 },
+        { "table": "dedicated_dungeons:chests/supply/advanced", "weight": 1 }
+      ]
+    },
+    "ELITE": {
+      "table": "dedicated_dungeons:chests/reward/elite"
+    },
+    "REWARD": {
+      "table": "dedicated_dungeons:chests/reward/default"
+    },
+    "BOSS": {
+      "table": "dedicated_dungeons:chests/reward/boss"
+    }
+  }
+}

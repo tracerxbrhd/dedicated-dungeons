@@ -1,0 +1,20 @@
+{
+  "format_version": 1,
+  "theme": "dedicated_dungeons:forgotten_depths",
+  "room_pool": "dedicated_dungeons:basic",
+  "connectors": [
+    { "connector": "dedicated_dungeons:straight", "weight": 4 },
+    { "connector": "dedicated_dungeons:corner", "weight": 1 }
+  ],
+  "bosses": [
+    { "boss": "dedicated_dungeons:zombie_champion", "weight": 8 },
+    { "boss": "dedicated_dungeons:skeleton_commander", "weight": 7 },
+    { "boss": "dedicated_dungeons:ravager_behemoth", "weight": 6 },
+    { "boss": "dedicated_dungeons:wither_skeleton_warlord", "weight": 6 },
+    { "boss": "dedicated_dungeons:evoker_archmage", "weight": 5 },
+    { "boss": "dedicated_dungeons:warden_aberration", "weight": 4 }
+  ],
+  "main_path": { "min": 2, "max": 4 },
+  "dead_end_chance": 0.0,
+  "difficulties": ["E", "D", "C", "B", "A", "S", "ANOMALY"]
+}
