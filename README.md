@@ -27,4 +27,10 @@ The framework is the main product: modpacks and servers are expected to provide 
 
 Datapack entry points and validation commands are documented in [`docs/DATAPACKS.md`](docs/DATAPACKS.md). Release maintenance is documented in [`docs/RELEASING.md`](docs/RELEASING.md).
 
-Copyright © 2026 tracerxbrhd / Underworld Studio. All rights reserved. See [LICENSE](LICENSE).
+## License
+
+Dedicated Dungeons source code is licensed under the [Mozilla Public License 2.0](LICENSE) (`MPL-2.0`). Modifications to MPL-covered source files remain subject to the MPL when distributed.
+
+The Underworld Studio name, logos, branding, and other trademarks are not licensed by the MPL. Third-party software, Minecraft/NeoForge materials, and other third-party components remain subject to their respective licenses and terms.
+
+Copyright © 2026 tracerxbrhd / Underworld Studio.
