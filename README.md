@@ -1,13 +1,13 @@
 ![Dedicated Dungeons banner](src/main/resources/assets/dedicated_dungeons/branding/banner.png)
 
-# Dedicated Dungeons
-
 <p align="center">
   <a href="https://github.com/tracerxbrhd/dedicated-dungeons/releases"><img alt="Release" src="https://img.shields.io/github/v/release/tracerxbrhd/dedicated-dungeons?include_prereleases&sort=semver&label=release"></a>
   <a href="https://github.com/tracerxbrhd/dedicated-dungeons/actions/workflows/build.yml"><img alt="Build" src="https://github.com/tracerxbrhd/dedicated-dungeons/actions/workflows/build.yml/badge.svg?branch=master"></a>
   <a href="https://modrinth.com/mod/dedicated-dungeons"><img alt="Modrinth" src="https://img.shields.io/badge/Modrinth-Download-00AF5C?logo=modrinth&logoColor=white"></a>
   <a href="https://www.curseforge.com/minecraft/mc-mods/dedicated-dungeons"><img alt="CurseForge" src="https://img.shields.io/badge/CurseForge-Download-F16436?logo=curseforge&logoColor=white"></a>
 </p>
+
+# Dedicated Dungeons
 
 **Dedicated Dungeons is a NeoForge framework for isolated, procedurally assembled dungeon runs.** It combines structure-authored rooms, managed U-API instances, party deployment, data-driven encounters and configurable loot into a system intended for both players and modpack/datapack creators.
 
